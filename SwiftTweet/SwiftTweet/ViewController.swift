@@ -47,6 +47,18 @@ class ViewController: UIViewController {
         self.userName.text = "@" + accounts[0].username
         let userName = accounts[0].username
         
+        self.swifter!.getUsersProfileBannerWithUserID(userName, success: { json in
+            guard let url = json["web_retina"]["url"].string else { return }
+            print(url)
+            // now you have the url
+            guard let data = NSData(contentsOfURL: NSURL(fileURLWithPath: url)),
+                let decodedImage = UIImage(data: data) else { return }
+            // now you have the image by using `decodedImage`
+            print("here")
+            self.profilePicture.image = decodedImage
+            print(data)
+        })
+        
     
     }
 
