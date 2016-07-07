@@ -18,7 +18,6 @@ class TimeLineTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(tweets)
         return tweets.count
         
     }

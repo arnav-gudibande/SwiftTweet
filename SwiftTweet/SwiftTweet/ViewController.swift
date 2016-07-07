@@ -7,18 +7,54 @@
 //
 
 import UIKit
-import SwifteriOS
 import Accounts
+import Social
+import SwifteriOS
+import SafariServices
 
-class ViewController: UIViewController {
+extension UIImageView {
+    public func imageFromUrl(urlString: String) {
+        if let url = NSURL(string: urlString) {
+            let request = NSURLRequest(URL: url)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
+                (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                if let imageData = data as NSData? {
+                    self.image = UIImage(data: imageData)
+                }
+            }
+        }
+    }
+}
+
+class ViewController: UIViewController, SFSafariViewControllerDelegate {
     
     var swifter: Swifter?
-
+    
     @IBOutlet weak var profilePicture: UIImageView!
-    
+    @IBOutlet weak var profileBanner: UIImageView!
     @IBOutlet weak var fullName: UILabel!
-    
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var followersNumber: UILabel!
+    @IBOutlet weak var followingNumber: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var tweetsNumber: UILabel!
+
+    @IBAction func buttonPressed(sender: AnyObject) {
+        
+        self.swifter!.getStatusesHomeTimelineWithCount(20, success: { statuses in
+            
+            let timeLineTableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("TimeLineTableViewController") as! TimeLineTableViewController
+            guard let tweets = statuses else { return }
+            timeLineTableViewController.tweets = tweets
+            self.navigationController?.pushViewController(timeLineTableViewController, animated: true)
+        })
+    }
+
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,43 +74,53 @@ class ViewController: UIViewController {
         }()
         
         swifter = Swifter(account: accounts[0])
-        setProfile(accounts)
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.setProfile(accounts)
+        }
+        
     }
     
     func setProfile(accounts: [ACAccount]) {
-        print(accounts[0].userFullName)
         self.fullName.text = accounts[0].userFullName
         self.userName.text = "@" + accounts[0].username
         let userName = accounts[0].username
         
-        self.swifter!.getUsersProfileBannerWithUserID(userName, success: { json in
-            guard let url = json["web_retina"]["url"].string else { return }
-            print(url)
-            // now you have the url
-            guard let data = NSData(contentsOfURL: NSURL(fileURLWithPath: url)),
-                let decodedImage = UIImage(data: data) else { return }
-            // now you have the image by using `decodedImage`
-            print("here")
-            self.profilePicture.image = decodedImage
-            print(data)
-        })
-        
-    
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func buttonPressed(sender: AnyObject) {
-        self.swifter!.getStatusesHomeTimelineWithCount(20, success: { statuses in
+        let failureHandler: ((NSError) -> Void) = { error in
             
-            let timeLineTableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("TimeLineTableViewController") as! TimeLineTableViewController
-            guard let tweets = statuses else { return }
-            timeLineTableViewController.tweets = tweets
-            self.navigationController?.pushViewController(timeLineTableViewController, animated: true)
-        })
+            self.alertWithTitle("Error", message: error.localizedDescription)
+        }
+        
+        self.swifter!.getUsersShowWithScreenName(userName!, success: { json in
+            
+            guard let url = json!["profile_image_url"]!.string else { return }
+            self.profilePicture.imageFromUrl(url)
+            
+            guard let url2 = json!["profile_banner_url"]!.string else { return }
+            self.profileBanner.imageFromUrl(url2)
+            
+            guard let followers = json!["followers_count"]!.integer else {return}
+            self.followersNumber.text = String(followers)
+            
+            guard let friends = json!["friends_count"]!.integer else { return }
+            self.followingNumber.text = String(friends)
+            
+            guard let des = json!["description"]!.string else { return }
+            self.descriptionLabel.text = des
+            
+            guard let tN = json!["statuses_count"]!.string else { return }
+            self.tweetsNumber.text = tN
+            
+            
+            }, failure: failureHandler)
+        
+    }
+
+    
+    func alertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }
