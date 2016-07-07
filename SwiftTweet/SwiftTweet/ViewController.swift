@@ -38,11 +38,9 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var followingNumber: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var tweetsNumber: UILabel!
-
-    @IBAction func buttonPressed(sender: AnyObject) {
-        
+    
+    @IBAction func timeLineButtonPressed(sender: AnyObject) {
         self.swifter!.getStatusesHomeTimelineWithCount(20, success: { statuses in
-            
             let timeLineTableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("TimeLineTableViewController") as! TimeLineTableViewController
             guard let tweets = statuses else { return }
             timeLineTableViewController.tweets = tweets
@@ -50,7 +48,6 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
         })
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,6 +55,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let accountStore = ACAccountStore()
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         
@@ -85,6 +83,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
         self.fullName.text = accounts[0].userFullName
         self.userName.text = "@" + accounts[0].username
         let userName = accounts[0].username
+        self.profileBanner.layer.zPosition = -1;
         
         let failureHandler: ((NSError) -> Void) = { error in
             
@@ -108,8 +107,8 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
             guard let des = json!["description"]!.string else { return }
             self.descriptionLabel.text = des
             
-            guard let tN = json!["statuses_count"]!.string else { return }
-            self.tweetsNumber.text = tN
+            guard let tN = json!["statuses_count"]!.integer else { return }
+            self.tweetsNumber.text = String(tN)
             
             
             }, failure: failureHandler)
@@ -124,4 +123,3 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     }
 
 }
-
