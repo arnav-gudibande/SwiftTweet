@@ -32,6 +32,7 @@ class TimeLineTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: nil)
+        cell.textLabel?.numberOfLines = 0
         
         cell.textLabel?.text = tweets[indexPath.row]["text"].string
         

@@ -29,6 +29,7 @@ extension UIImageView {
 class ViewController: UIViewController, SFSafariViewControllerDelegate {
     
     var swifter: Swifter?
+    var userIDG: Int?
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileBanner: UIImageView!
@@ -38,6 +39,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var followingNumber: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var tweetsNumber: UILabel!
+    @IBOutlet weak var mentionsTableView: UITableView!
     
     @IBAction func timeLineButtonPressed(sender: AnyObject) {
         self.swifter!.getStatusesHomeTimelineWithCount(20, success: { statuses in
@@ -55,7 +57,6 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let accountStore = ACAccountStore()
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         
@@ -63,6 +64,13 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
             granted, error in
             self.setSwifter()
         }
+    }
+    
+    
+    // UITableViewDelegate Functions
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
     }
     
     func setSwifter() {
@@ -110,6 +118,8 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
             guard let tN = json!["statuses_count"]!.integer else { return }
             self.tweetsNumber.text = String(tN)
             
+            guard let userID = json!["id_str"]!.string else { return }
+            self.userIDG = Int(userID)
             
             }, failure: failureHandler)
         
