@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		894CF3D41D2FFFBB00A452D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */; };
 		C088CA4D1D299A33003B8F17 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C088CA4C1D299A33003B8F17 /* SwifteriOS.framework */; };
 		C0D151091D2998110098E96E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D151081D2998110098E96E /* AppDelegate.swift */; };
 		C0D1510B1D2998110098E96E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1510A1D2998110098E96E /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		C088CA4C1D299A33003B8F17 /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/SwiftTweetApp-ekjwmyjdgvdcocdecahlqwezpyqd/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
 		C0D151051D2998110098E96E /* SwiftTweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTweet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D151081D2998110098E96E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				C0D151081D2998110098E96E /* AppDelegate.swift */,
 				C0D1510A1D2998110098E96E /* ViewController.swift */,
 				C0D1510C1D2998110098E96E /* Main.storyboard */,
+				894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */,
 				C0D1511A1D2999070098E96E /* TimeLineTableViewController.swift */,
 				C0D1510F1D2998110098E96E /* Assets.xcassets */,
 				C0D151111D2998110098E96E /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 				C0D1510B1D2998110098E96E /* ViewController.swift in Sources */,
 				C0D151091D2998110098E96E /* AppDelegate.swift in Sources */,
 				C0D1511B1D2999070098E96E /* TimeLineTableViewController.swift in Sources */,
+				894CF3D41D2FFFBB00A452D8 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

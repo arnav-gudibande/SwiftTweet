@@ -39,7 +39,6 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     @IBOutlet weak var followingNumber: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var tweetsNumber: UILabel!
-    @IBOutlet weak var mentionsTableView: UITableView!
     
     @IBAction func timeLineButtonPressed(sender: AnyObject) {
         self.swifter!.getStatusesHomeTimelineWithCount(20, success: { statuses in
