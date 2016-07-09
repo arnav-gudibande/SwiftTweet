@@ -46,7 +46,7 @@ class TimeLineTableViewController: UIViewController, UITableViewDelegate, UITabl
         let tweetColor = tweets[indexPath.row]["user"]["profile_background_color"].string
         cell.TweetAccent.backgroundColor = hexStringToUIColor(tweetColor!)
         let arrT = tweets[indexPath.row]["extended_entities"]["media"].array
-        if(arrT?.endIndex>0){
+        if(arrT?.endIndex>=1){
             let url = arrT![0]["media_url"].string
             cell.TweetImage.pullImageFromUrl(url!)
         }
