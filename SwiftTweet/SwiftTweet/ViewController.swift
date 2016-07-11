@@ -49,6 +49,11 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
         })
     }
 
+    @IBAction func trendingButtonPressed(sender: AnyObject) {
+        let trendingViewController = self.storyboard!.instantiateViewControllerWithIdentifier("trendingViewController") as! TrendingViewController
+        self.navigationController?.pushViewController(trendingViewController, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
