@@ -10,7 +10,9 @@ import UIKit
 import Accounts
 import Social
 import SwifteriOS
+import MapKit
 import SafariServices
+import CoreLocation
 
 extension UIImageView {
     public func imageFromUrl(urlString: String) {
@@ -26,10 +28,13 @@ extension UIImageView {
     }
 }
 
-class ViewController: UIViewController, SFSafariViewControllerDelegate {
+class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocationManagerDelegate {
     
     var swifter: Swifter?
     var userIDG: Int?
+    var lat: CLLocationDegrees?
+    var lon: CLLocationDegrees?
+    var geo: String?
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileBanner: UIImageView!
@@ -48,11 +53,6 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
             self.navigationController?.pushViewController(timeLineTableViewController, animated: true)
         })
     }
-
-    @IBAction func trendingButtonPressed(sender: AnyObject) {
-        let trendingViewController = self.storyboard!.instantiateViewControllerWithIdentifier("trendingViewController") as! TrendingViewController
-        self.navigationController?.pushViewController(trendingViewController, animated: true)
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,6 +61,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let accountStore = ACAccountStore()
         let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
         
@@ -68,6 +69,25 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
             granted, error in
             self.setSwifter()
         }
+        self.setLoc()
+    }
+    
+    func setLoc() {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
+        var locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        print("Error retrieving location")
     }
     
     

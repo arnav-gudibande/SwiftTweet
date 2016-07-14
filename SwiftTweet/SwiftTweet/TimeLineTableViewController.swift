@@ -36,8 +36,8 @@ class TimeLineTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell") as! TweetTableViewCell
-        print(tweets)
         cell.TweetFullName.text = tweets[indexPath.row]["user"]["name"].string
         cell.TweetUserName.text = "@" + tweets[indexPath.row]["user"]["screen_name"].string!
         let tweetURL = tweets[indexPath.row]["user"]["profile_image_url"].string
@@ -52,6 +52,7 @@ class TimeLineTableViewController: UIViewController, UITableViewDelegate, UITabl
         cell.TweetBody.numberOfLines = 0
         cell.TweetBody.text = tweets[indexPath.row]["text"].string
         return cell
+        
     }
     
     func hexStringToUIColor (hex:String) -> UIColor {
