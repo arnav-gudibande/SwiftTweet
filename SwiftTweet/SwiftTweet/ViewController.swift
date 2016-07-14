@@ -18,7 +18,7 @@ extension UIImageView {
     public func imageFromUrl(_ urlString: String) {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
-            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main()) {
                 (response: URLResponse?, data: Data?, error: NSError?) -> Void in
                 if let imageData = data as Data? {
                     self.image = UIImage(data: imageData)
@@ -35,6 +35,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     var lat: CLLocationDegrees?
     var lon: CLLocationDegrees?
     var geo: String?
+    var woeid: Int?
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileBanner: UIImageView!
@@ -69,16 +70,16 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
             granted, error in
             self.setSwifter()
         }
-        self.setLoc()
-    }
-    
-    func setLoc() {
+        
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        lat = locationManager.location?.coordinate.latitude
+        lon = locationManager.location?.coordinate.longitude
+        geo = "\(lat!)" + "," + "\(lon!)" + "," + "5mi"
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -107,6 +108,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
         
         DispatchQueue.main.async {
             self.setProfile(accounts)
+            self.setTrending()
         }
         
     }
@@ -150,6 +152,37 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
             
             }, failure: failureHandler)
         
+    }
+    
+    func setTrending() {
+        let failureHandler: ((NSError) -> Void) = { error in
+            
+            self.alertWithTitle("Error", message: error.localizedDescription)
+        }
+        
+        self.swifter!.getTrendsClosestWithLat(lat!, long: lon!, success: { json in
+            
+            guard let trend = json else { return }
+            self.woeid = trend[0]["woeid"].integer
+            print(self.woeid!)
+            
+            self.swifter?.getTrendsPlaceWithWOEID(String(self.woeid!), success: { trends in
+                guard let trendingHashtags = trends else { return }
+                print(trendingHashtags)
+                
+                }, failure: failureHandler)
+            
+            }, failure: failureHandler)
+        
+        
+        
+
+        self.swifter!.getSearchTweetsWithQuery("#Apple", geocode: geo, success: { (statuses, searchMetadata) in
+            
+            guard let trendingTweets = statuses else { return }
+            //print(trendingTweets)
+            
+            },failure: failureHandler)
     }
 
     

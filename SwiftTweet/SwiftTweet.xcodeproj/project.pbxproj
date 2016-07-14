@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		89106DF11D36FB0C00D85D7E /* geoTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */; };
+		892D59E81D38048E00BB6436 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892D59E71D38048E00BB6436 /* SwifteriOS.framework */; };
+		892D59E91D38048E00BB6436 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 892D59E71D38048E00BB6436 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		894CF3D41D2FFFBB00A452D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */; };
-		C0BBBF551D375D8300E7F6E6 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */; };
 		C0BBBF571D375D8A00E7F6E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BBBF561D375D8A00E7F6E6 /* CoreLocation.framework */; };
-		C0BBBF591D3760DF00E7F6E6 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0D151091D2998110098E96E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D151081D2998110098E96E /* AppDelegate.swift */; };
 		C0D1510B1D2998110098E96E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1510A1D2998110098E96E /* ViewController.swift */; };
 		C0D1510E1D2998110098E96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0D1510C1D2998110098E96E /* Main.storyboard */; };
@@ -21,13 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C0BBBF5A1D3760DF00E7F6E6 /* Embed Frameworks */ = {
+		892D59EA1D38048E00BB6436 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C0BBBF591D3760DF00E7F6E6 /* SwifteriOS.framework in Embed Frameworks */,
+				892D59E91D38048E00BB6436 /* SwifteriOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,8 +36,8 @@
 
 /* Begin PBXFileReference section */
 		89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = geoTweetViewController.swift; sourceTree = "<group>"; };
+		892D59E71D38048E00BB6436 /* SwifteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwifteriOS.framework; path = "/Users/Arnav_Gudibande/Library/Developer/Xcode/DerivedData/SwiftTweetApp-aiywqwrzbhmbkugbeovtnrsjqwlo/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<absolute>"; };
 		894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
-		C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/SwiftTweetApp-ekjwmyjdgvdcocdecahlqwezpyqd/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
 		C0BBBF561D375D8A00E7F6E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C0D151051D2998110098E96E /* SwiftTweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTweet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D151081D2998110098E96E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0BBBF571D375D8A00E7F6E6 /* CoreLocation.framework in Frameworks */,
-				C0BBBF551D375D8300E7F6E6 /* SwifteriOS.framework in Frameworks */,
+				892D59E81D38048E00BB6436 /* SwifteriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +65,8 @@
 		C0BBBF531D375D8300E7F6E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				892D59E71D38048E00BB6436 /* SwifteriOS.framework */,
 				C0BBBF561D375D8A00E7F6E6 /* CoreLocation.framework */,
-				C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -114,7 +114,7 @@
 				C0D151011D2998100098E96E /* Sources */,
 				C0D151021D2998100098E96E /* Frameworks */,
 				C0D151031D2998100098E96E /* Resources */,
-				C0BBBF5A1D3760DF00E7F6E6 /* Embed Frameworks */,
+				892D59EA1D38048E00BB6436 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -284,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -294,8 +294,11 @@
 		C0D151181D2998110098E96E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = SwiftTweet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arnav.gudibande.SwiftTweet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -306,8 +309,11 @@
 		C0D151191D2998110098E96E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = SwiftTweet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arnav.gudibande.SwiftTweet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
