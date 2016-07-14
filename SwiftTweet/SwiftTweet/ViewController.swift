@@ -15,12 +15,12 @@ import SafariServices
 import CoreLocation
 
 extension UIImageView {
-    public func imageFromUrl(urlString: String) {
-        if let url = NSURL(string: urlString) {
-            let request = NSURLRequest(URL: url)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-                (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                if let imageData = data as NSData? {
+    public func imageFromUrl(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            let request = URLRequest(url: url)
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {
+                (response: URLResponse?, data: Data?, error: NSError?) -> Void in
+                if let imageData = data as Data? {
                     self.image = UIImage(data: imageData)
                 }
             }
@@ -45,9 +45,9 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var tweetsNumber: UILabel!
     
-    @IBAction func timeLineButtonPressed(sender: AnyObject) {
+    @IBAction func timeLineButtonPressed(_ sender: AnyObject) {
         self.swifter!.getStatusesHomeTimelineWithCount(20, success: { statuses in
-            let timeLineTableViewController = self.storyboard!.instantiateViewControllerWithIdentifier("TimeLineTableViewController") as! TimeLineTableViewController
+            let timeLineTableViewController = self.storyboard!.instantiateViewController(withIdentifier: "TimeLineTableViewController") as! TimeLineTableViewController
             guard let tweets = statuses else { return }
             timeLineTableViewController.tweets = tweets
             self.navigationController?.pushViewController(timeLineTableViewController, animated: true)
@@ -63,9 +63,9 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
         super.viewDidLoad()
         
         let accountStore = ACAccountStore()
-        let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+        let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
         
-        accountStore.requestAccessToAccountsWithType(accountType, options: nil) {
+        accountStore.requestAccessToAccounts(with: accountType, options: nil) {
             granted, error in
             self.setSwifter()
         }
@@ -81,37 +81,37 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
         locationManager.startUpdatingLocation()
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [CLLocation]!) {
-        var locValue: CLLocationCoordinate2D = manager.location!.coordinate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
         print("Error retrieving location")
     }
     
     
     // UITableViewDelegate Functions
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
     func setSwifter() {
         let accounts: [ACAccount] = {
-            let twitterAccountType = ACAccountStore().accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
-            return (ACAccountStore().accountsWithAccountType(twitterAccountType) as? [ACAccount])!
+            let twitterAccountType = ACAccountStore().accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
+            return (ACAccountStore().accounts(with: twitterAccountType) as? [ACAccount])!
         }()
         
         swifter = Swifter(account: accounts[0])
         
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.setProfile(accounts)
         }
         
     }
     
-    func setProfile(accounts: [ACAccount]) {
+    func setProfile(_ accounts: [ACAccount]) {
         self.fullName.text = accounts[0].userFullName
         self.userName.text = "@" + accounts[0].username
         let userName = accounts[0].username
@@ -153,25 +153,25 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     }
 
     
-    func alertWithTitle(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    func alertWithTitle(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
+    func hexStringToUIColor (_ hex:String) -> UIColor {
+        var cString:String = hex.uppercased()
         
         if (cString.hasPrefix("#")) {
-            cString = cString.substringFromIndex(cString.startIndex.advancedBy(1))
+            cString = cString.substring(from: cString.index(cString.startIndex, offsetBy: 1))
         }
         
         if ((cString.characters.count) != 6) {
-            return UIColor.grayColor()
+            return UIColor.gray()
         }
         
         var rgbValue:UInt32 = 0
-        NSScanner(string: cString).scanHexInt(&rgbValue)
+        Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,

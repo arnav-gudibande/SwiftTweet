@@ -10,12 +10,12 @@ import UIKit
 import SwifteriOS
 
 extension UIImageView {
-    public func pullImageFromUrl(urlString: String) {
-        if let url = NSURL(string: urlString) {
-            let request = NSURLRequest(URL: url)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {
-                (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                if let imageData = data as NSData? {
+    public func pullImageFromUrl(_ urlString: String) {
+        if let url = URL(string: urlString) {
+            let request = URLRequest(url: url)
+            NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main) {
+                (response: URLResponse?, data: Data?, error: NSError?) -> Void in
+                if let imageData = data as Data? {
                     self.image = UIImage(data: imageData)
                 }
             }
@@ -25,19 +25,19 @@ extension UIImageView {
 
 class TimeLineTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tweets: [JSONValue] = []
+    var tweets: [JSON] = []
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetTableViewCell") as! TweetTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetTableViewCell") as! TweetTableViewCell
         cell.TweetFullName.text = tweets[indexPath.row]["user"]["name"].string
         cell.TweetUserName.text = "@" + tweets[indexPath.row]["user"]["screen_name"].string!
         let tweetURL = tweets[indexPath.row]["user"]["profile_image_url"].string
@@ -55,19 +55,19 @@ class TimeLineTableViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
+    func hexStringToUIColor (_ hex:String) -> UIColor {
+        var cString:String = hex.uppercased()
         
         if (cString.hasPrefix("#")) {
-            cString = cString.substringFromIndex(cString.startIndex.advancedBy(1))
+            cString = cString.substring(from: cString.index(cString.startIndex, offsetBy: 1))
         }
         
         if ((cString.characters.count) != 6) {
-            return UIColor.grayColor()
+            return UIColor.gray()
         }
         
         var rgbValue:UInt32 = 0
-        NSScanner(string: cString).scanHexInt(&rgbValue)
+        Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,

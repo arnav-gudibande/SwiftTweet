@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		89106DEF1D36FA8100D85D7E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89106DEE1D36FA8100D85D7E /* CoreLocation.framework */; };
 		89106DF11D36FB0C00D85D7E /* geoTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */; };
 		894CF3D41D2FFFBB00A452D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */; };
-		C088CA4D1D299A33003B8F17 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C088CA4C1D299A33003B8F17 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		C0BBBF551D375D8300E7F6E6 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */; };
+		C0BBBF571D375D8A00E7F6E6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BBBF561D375D8A00E7F6E6 /* CoreLocation.framework */; };
+		C0BBBF591D3760DF00E7F6E6 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0D151091D2998110098E96E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D151081D2998110098E96E /* AppDelegate.swift */; };
 		C0D1510B1D2998110098E96E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1510A1D2998110098E96E /* ViewController.swift */; };
 		C0D1510E1D2998110098E96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0D1510C1D2998110098E96E /* Main.storyboard */; };
@@ -19,11 +20,25 @@
 		C0D1511B1D2999070098E96E /* TimeLineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1511A1D2999070098E96E /* TimeLineTableViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C0BBBF5A1D3760DF00E7F6E6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C0BBBF591D3760DF00E7F6E6 /* SwifteriOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		89106DEE1D36FA8100D85D7E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = geoTweetViewController.swift; sourceTree = "<group>"; };
 		894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
-		C088CA4C1D299A33003B8F17 /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/SwiftTweetApp-ekjwmyjdgvdcocdecahlqwezpyqd/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
+		C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifteriOS.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/SwiftTweetApp-ekjwmyjdgvdcocdecahlqwezpyqd/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<group>"; };
+		C0BBBF561D375D8A00E7F6E6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C0D151051D2998110098E96E /* SwiftTweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftTweet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D151081D2998110098E96E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0D1510A1D2998110098E96E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,21 +54,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89106DEF1D36FA8100D85D7E /* CoreLocation.framework in Frameworks */,
-				C088CA4D1D299A33003B8F17 /* SwifteriOS.framework in Frameworks */,
+				C0BBBF571D375D8A00E7F6E6 /* CoreLocation.framework in Frameworks */,
+				C0BBBF551D375D8300E7F6E6 /* SwifteriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0BBBF531D375D8300E7F6E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0BBBF561D375D8A00E7F6E6 /* CoreLocation.framework */,
+				C0BBBF541D375D8300E7F6E6 /* SwifteriOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C0D150FC1D2998100098E96E = {
 			isa = PBXGroup;
 			children = (
-				89106DEE1D36FA8100D85D7E /* CoreLocation.framework */,
-				C088CA4C1D299A33003B8F17 /* SwifteriOS.framework */,
 				C0D151071D2998110098E96E /* SwiftTweet */,
 				C0D151061D2998110098E96E /* Products */,
+				C0BBBF531D375D8300E7F6E6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +114,7 @@
 				C0D151011D2998100098E96E /* Sources */,
 				C0D151021D2998100098E96E /* Frameworks */,
 				C0D151031D2998100098E96E /* Resources */,
+				C0BBBF5A1D3760DF00E7F6E6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -108,12 +132,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Arnav Gudibande";
 				TargetAttributes = {
 					C0D151041D2998100098E96E = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 644K27Q47A;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -274,6 +299,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arnav.gudibande.SwiftTweet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -285,6 +311,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arnav.gudibande.SwiftTweet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

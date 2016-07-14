@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Swifter-master/Swifter.xcodeproj">
+      location = "group:../../../../Downloads/Swifter-swift-3/Swifter.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:SwiftTweet/SwiftTweet.xcodeproj">
