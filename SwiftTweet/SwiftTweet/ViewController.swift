@@ -36,6 +36,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     var lon: CLLocationDegrees?
     var geo: String?
     var woeid: Int?
+    var arrHashtags: Array<String> = []
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileBanner: UIImageView!
@@ -79,7 +80,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
         locationManager.startUpdatingLocation()
         lat = locationManager.location?.coordinate.latitude
         lon = locationManager.location?.coordinate.longitude
-        geo = "\(lat!)" + "," + "\(lon!)" + "," + "5mi"
+        geo = "\(lat!)" + "," + "\(lon!)" + "," + "10mi"
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -164,25 +165,41 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
             
             guard let trend = json else { return }
             self.woeid = trend[0]["woeid"].integer
-            print(self.woeid!)
             
             self.swifter?.getTrendsPlaceWithWOEID(String(self.woeid!), success: { trends in
                 guard let trendingHashtags = trends else { return }
-                print(trendingHashtags)
                 
-                }, failure: failureHandler)
-            
-            }, failure: failureHandler)
-        
-        
-        
+                for i in 0...25 {
+                    self.arrHashtags.append(trendingHashtags[0]["trends"][i]["name"].string!)
+                }
+                print(self.geo!)
+                
+                for ix in self.arrHashtags {
+                    
+                    self.swifter!.getSearchTweetsWithQuery(ix, count: 2, success: { (statuses, searchMetadata) in
+                        
+                        guard let trendingTweets = statuses else { return }
+                        
+                        if trendingTweets.count>0 {
+                            for i in 0..<trendingTweets.count {
+                                print(trendingTweets[i]["text"])
+                                print(trendingTweets[i]["coordinates"])
+                                print(trendingTweets[i]["user"]["location"])
+                            }
+                        }
+                        
+                    },failure: failureHandler)
 
-        self.swifter!.getSearchTweetsWithQuery("#Apple", geocode: geo, success: { (statuses, searchMetadata) in
+                }
+
+            }, failure: failureHandler)
             
-            guard let trendingTweets = statuses else { return }
-            //print(trendingTweets)
-            
-            },failure: failureHandler)
+        }, failure: failureHandler)
+        
+        
+       
+        
+        
     }
 
     
