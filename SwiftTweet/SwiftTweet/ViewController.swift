@@ -176,7 +176,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
                 
                 for ix in self.arrHashtags {
                     
-                    self.swifter!.getSearchTweetsWithQuery(ix, count: 2, success: { (statuses, searchMetadata) in
+                    self.swifter!.getSearchTweetsWithQuery(ix, geocode: self.geo!, count: 2, success: { (statuses, searchMetadata) in
                         
                         guard let trendingTweets = statuses else { return }
                         
