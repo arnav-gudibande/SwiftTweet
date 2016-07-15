@@ -61,6 +61,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     @IBAction func trendingButtonPressed(_ sender: AnyObject) {
         let GeoTweetViewController = self.storyboard!.instantiateViewController(withIdentifier: "geoTweetViewController") as! geoTweetViewController
         GeoTweetViewController.geoTags = geoTags
+        geoCoords.removeValue(forKey: "hashtag")
         print(self.geoCoords)
         self.navigationController?.pushViewController(GeoTweetViewController, animated: true)
     }
@@ -185,19 +186,18 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
                 self.geoTags = trendingHashtags
                 
                 for ix in self.arrHashtags {
-                    self.swifter!.getSearchTweetsWithQuery(ix, geocode: self.geo!,count: 50, success: { (statuses, searchMetadata) in
+                    self.swifter!.getSearchTweetsWithQuery(ix, geocode: self.geo!, count: 50, success: { (statuses, searchMetadata) in
                         
                         guard let trendingTweets = statuses else { return }
-                        
                         if trendingTweets.count>0 {
+                            
                             for i in 0..<trendingTweets.count {
                                 if trendingTweets[i]["coordinates"] != nil {
                                     let tempLon = trendingTweets[i]["coordinates"]["coordinates"][0].double
                                     let tempLat = trendingTweets[i]["coordinates"]["coordinates"][1].double
-                                    print("******DEBUG LOG*******")
-                                    print(tempLat)
                                     self.geoCoords[ix] = [tempLat!, tempLon!]
                                 }
+                                
                             }
                         }
                         

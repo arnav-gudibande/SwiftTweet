@@ -88,14 +88,6 @@
                                     <constraint firstAttribute="width" constant="80" id="Mpf-Ty-ygv"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mQ-8g-npl">
-                                <frame key="frameInset" minX="57" minY="481" width="74" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Trending"/>
-                                <connections>
-                                    <action selector="trendingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gMg-vB-inW"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -138,6 +130,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="SwiftTweet" id="MGQ-G7-M3U">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="kXU-zq-e34">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2mQ-8g-npl">
+                                <rect key="frame" x="16" y="7" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Trending"/>
+                                <connections>
+                                    <action selector="trendingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gMg-vB-inW"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="64L-da-Rew">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g3h-EA-0jf">
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
@@ -182,7 +184,7 @@
                                 <frame key="frameInset" minY="28" width="375" height="456"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FZu-29-ZPo" id="Gqn-TM-CkR">
-                                    <frame key="frameInset" width="375" height="455"/>
+                                    <frame key="frameInset" width="375" height="455.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87r-TV-msi">
@@ -275,7 +277,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ifI-4f-OEg"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ifI-4f-OEg">
+                                <frame key="frameInset" minY="423" width="375"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
