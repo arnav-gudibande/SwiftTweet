@@ -52,7 +52,6 @@ class TimeLineTableViewController: UIViewController, UITableViewDelegate, UITabl
         cell.TweetBody.numberOfLines = 0
         cell.TweetBody.text = tweets[indexPath.row]["text"].string
         return cell
-        
     }
     
     func hexStringToUIColor (_ hex:String) -> UIColor {

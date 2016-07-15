@@ -39,6 +39,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     var arrHashtags: Array<String> = []
     var geoTags: [JSON] = []
     var geoCoords = ["hashtag":[0.0,0.0]]
+    var currentLoc: Array<Double> = []
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileBanner: UIImageView!
@@ -61,7 +62,9 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     @IBAction func trendingButtonPressed(_ sender: AnyObject) {
         let GeoTweetViewController = self.storyboard!.instantiateViewController(withIdentifier: "geoTweetViewController") as! geoTweetViewController
         GeoTweetViewController.geoTags = geoTags
+        GeoTweetViewController.currentLoc = currentLoc
         geoCoords.removeValue(forKey: "hashtag")
+        GeoTweetViewController.geoCoords = self.geoCoords
         print(self.geoCoords)
         self.navigationController?.pushViewController(GeoTweetViewController, animated: true)
     }
@@ -91,6 +94,8 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
         lat = locationManager.location?.coordinate.latitude
         lon = locationManager.location?.coordinate.longitude
         geo = "\(lat!)" + "," + "\(lon!)" + "," + "10mi"
+        currentLoc.append(lat!)
+        currentLoc.append(lon!)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -179,8 +184,10 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
             self.swifter?.getTrendsPlaceWithWOEID(String(self.woeid!), success: { trends in
                 guard let trendingHashtags = trends else { return }
                 
-                for i in 0..<40{
-                    self.arrHashtags.append(trendingHashtags[0]["trends"][i]["name"].string!)
+                for i in 0..<50{
+                    if trendingHashtags[0]["trends"][i]["name"].string != nil {
+                        self.arrHashtags.append(trendingHashtags[0]["trends"][i]["name"].string!)
+                    }
                 }
                 
                 self.geoTags = trendingHashtags

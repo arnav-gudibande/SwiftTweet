@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		89106DF11D36FB0C00D85D7E /* geoTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */; };
+		8912EEF31D39421600F947F0 /* HashtagTrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8912EEF21D39421600F947F0 /* HashtagTrendingTableViewCell.swift */; };
 		892D59E81D38048E00BB6436 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 892D59E71D38048E00BB6436 /* SwifteriOS.framework */; };
 		892D59E91D38048E00BB6436 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 892D59E71D38048E00BB6436 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		894CF3D41D2FFFBB00A452D8 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = geoTweetViewController.swift; sourceTree = "<group>"; };
+		8912EEF21D39421600F947F0 /* HashtagTrendingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagTrendingTableViewCell.swift; sourceTree = "<group>"; };
 		892D59E71D38048E00BB6436 /* SwifteriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwifteriOS.framework; path = "/Users/Arnav_Gudibande/Library/Developer/Xcode/DerivedData/SwiftTweetApp-aiywqwrzbhmbkugbeovtnrsjqwlo/Build/Products/Debug-iphoneos/SwifteriOS.framework"; sourceTree = "<absolute>"; };
 		894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		8950155F1D385C00004C59DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -98,6 +100,7 @@
 				C0D151081D2998110098E96E /* AppDelegate.swift */,
 				C0D1510A1D2998110098E96E /* ViewController.swift */,
 				C0D1510C1D2998110098E96E /* Main.storyboard */,
+				8912EEF21D39421600F947F0 /* HashtagTrendingTableViewCell.swift */,
 				89106DF01D36FB0C00D85D7E /* geoTweetViewController.swift */,
 				894CF3D31D2FFFBB00A452D8 /* TweetTableViewCell.swift */,
 				C0D1511A1D2999070098E96E /* TimeLineTableViewController.swift */,
@@ -187,6 +190,7 @@
 				C0D151091D2998110098E96E /* AppDelegate.swift in Sources */,
 				C0D1511B1D2999070098E96E /* TimeLineTableViewController.swift in Sources */,
 				894CF3D41D2FFFBB00A452D8 /* TweetTableViewCell.swift in Sources */,
+				8912EEF31D39421600F947F0 /* HashtagTrendingTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
