@@ -37,6 +37,8 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
     var geo: String?
     var woeid: Int?
     var arrHashtags: Array<String> = []
+    var geoTags: [JSON] = []
+    var geoCoords = ["hashtag":[0.0,0.0]]
     
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileBanner: UIImageView!
@@ -54,6 +56,13 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
             timeLineTableViewController.tweets = tweets
             self.navigationController?.pushViewController(timeLineTableViewController, animated: true)
         })
+    }
+    
+    @IBAction func trendingButtonPressed(_ sender: AnyObject) {
+        let GeoTweetViewController = self.storyboard!.instantiateViewController(withIdentifier: "geoTweetViewController") as! geoTweetViewController
+        GeoTweetViewController.geoTags = geoTags
+        print(self.geoCoords)
+        self.navigationController?.pushViewController(GeoTweetViewController, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -169,27 +178,31 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
             self.swifter?.getTrendsPlaceWithWOEID(String(self.woeid!), success: { trends in
                 guard let trendingHashtags = trends else { return }
                 
-                for i in 0...25 {
+                for i in 0..<40{
                     self.arrHashtags.append(trendingHashtags[0]["trends"][i]["name"].string!)
                 }
-                print(self.geo!)
+                
+                self.geoTags = trendingHashtags
                 
                 for ix in self.arrHashtags {
-                    
-                    self.swifter!.getSearchTweetsWithQuery(ix, geocode: self.geo!, count: 2, success: { (statuses, searchMetadata) in
+                    self.swifter!.getSearchTweetsWithQuery(ix, geocode: self.geo!,count: 50, success: { (statuses, searchMetadata) in
                         
                         guard let trendingTweets = statuses else { return }
                         
                         if trendingTweets.count>0 {
                             for i in 0..<trendingTweets.count {
-                                print(trendingTweets[i]["text"])
-                                print(trendingTweets[i]["coordinates"])
-                                print(trendingTweets[i]["user"]["location"])
+                                if trendingTweets[i]["coordinates"] != nil {
+                                    let tempLon = trendingTweets[i]["coordinates"]["coordinates"][0].double
+                                    let tempLat = trendingTweets[i]["coordinates"]["coordinates"][1].double
+                                    print("******DEBUG LOG*******")
+                                    print(tempLat)
+                                    self.geoCoords[ix] = [tempLat!, tempLon!]
+                                }
                             }
                         }
                         
+                        
                     },failure: failureHandler)
-
                 }
 
             }, failure: failureHandler)
@@ -197,9 +210,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate, CLLocati
         }, failure: failureHandler)
         
         
-       
-        
-        
+
     }
 
     

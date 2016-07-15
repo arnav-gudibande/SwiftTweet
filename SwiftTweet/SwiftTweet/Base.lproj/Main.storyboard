@@ -88,6 +88,14 @@
                                     <constraint firstAttribute="width" constant="80" id="Mpf-Ty-ygv"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mQ-8g-npl">
+                                <frame key="frameInset" minX="57" minY="481" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Trending"/>
+                                <connections>
+                                    <action selector="trendingButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gMg-vB-inW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -159,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153.5" y="652.5"/>
+            <point key="canvasLocation" x="2152.8000000000002" y="651.72413793103453"/>
         </scene>
         <!--Time Line Table View Controller-->
         <scene sceneID="P3m-Oz-18v">
@@ -174,7 +182,7 @@
                                 <frame key="frameInset" minY="28" width="375" height="456"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FZu-29-ZPo" id="Gqn-TM-CkR">
-                                    <frame key="frameInset" width="375" height="455.5"/>
+                                    <frame key="frameInset" width="375" height="455"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87r-TV-msi">
@@ -253,12 +261,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ew-US-NRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600.5" y="652.5"/>
+            <point key="canvasLocation" x="2921" y="645"/>
         </scene>
         <!--Geo Tweet View Controller-->
         <scene sceneID="3xd-0K-JCv">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="36Q-YK-n5I" customClass="geoTweetViewController" customModule="SwiftTweet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="geoTweetViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="36Q-YK-n5I" customClass="geoTweetViewController" customModule="SwiftTweet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3m0-F7-gt6"/>
                         <viewControllerLayoutGuide type="bottom" id="TEp-Ni-Ica"/>
@@ -278,12 +286,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="map" destination="ifI-4f-OEg" id="nju-pm-0Sk"/>
+                        <outlet property="mapView" destination="ifI-4f-OEg" id="2rG-4B-CZx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPc-Ix-9Yp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3053.5" y="652.5"/>
+            <point key="canvasLocation" x="3684" y="646"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qwb-se-KFI">
@@ -302,7 +310,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDv-ki-JGW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686.5" y="652.5"/>
+            <point key="canvasLocation" x="1367" y="652"/>
         </scene>
     </scenes>
 </document>
